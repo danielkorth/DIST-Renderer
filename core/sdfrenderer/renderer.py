@@ -871,7 +871,7 @@ class SDFRenderer(object):
 
         ## update valid_mask
         valid_mask = valid_mask.clone()
-        valid_mask[valid_mask] = valid_mask_render
+        valid_mask[valid_mask.clone()] = valid_mask_render
         profiler.report_process('[DEPTH] finalize time\t')
         if no_grad_depth:
             Zdepth = Zdepth.detach()

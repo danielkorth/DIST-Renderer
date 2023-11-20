@@ -82,22 +82,22 @@ class LoaderMultiPMO(torch.utils.data.Dataset):
         for i in range(num_img):
             mask_cur = masks[i]
             mask_cur[mask_cur<1] = 0
-            mask_cur = mask_cur.astype(np.bool)
+            mask_cur = mask_cur.astype(bool)
             img_cur = imgs[i]
             cam_cur = Camera(cam['intr'], cam['extr'][i])
 
             if self.focal is not None:
                 img_cur = self.resize_image(img_cur, self.focal)
-                mask_cur = self.resize_image(mask_cur.astype(np.float), self.focal)
+                mask_cur = self.resize_image(mask_cur.astype(float), self.focal)
                 mask_cur[mask_cur<1] = 0
-                mask_cur = mask_cur.astype(np.bool)
+                mask_cur = mask_cur.astype(bool)
                 cam_cur.intrinsic[0, 0] = cam_cur.intrinsic[0, 0]*self.focal
                 cam_cur.intrinsic[1, 1] = cam_cur.intrinsic[1, 1]*self.focal
 
             if self.scale != 1:
-                mask_cur = cv2.resize(mask_cur.astype(np.float), None, fx=self.scale, fy=self.scale)
+                mask_cur = cv2.resize(mask_cur.astype(float), None, fx=self.scale, fy=self.scale)
                 mask_cur[mask_cur<1] = 0
-                mask_cur = mask_cur.astype(np.bool)
+                mask_cur = mask_cur.astype(bool)
                 img_cur = cv2.resize(img_cur, None, fx=self.scale, fy=self.scale)
                 cam_cur.intrinsic[:2] = cam_cur.intrinsic[:2] * self.scale
 

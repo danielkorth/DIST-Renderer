@@ -37,9 +37,9 @@ sh Anaconda3-2019.07-Linux-x86_64.sh
 ```
 Initialize a virtual environment with conda.
 ```
-conda create -n sdfrenderer python=3.7 -y
+conda create -n sdfrenderer python=3.10 -y
 conda activate sdfrenderer
-conda install pytorch=1.1.0 torchvision cudatoolkit=9.0 -c pytorch -y
+conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
 ```
 Then, install the required packages.
 ```
